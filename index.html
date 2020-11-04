@@ -25,10 +25,18 @@
         
         
         function TodoList(data){
+            if(!datas || !Array.isArray(datas) || !new.target){
+                throw new Error('error message')
+            } 
+            datas.forEach((data) => {
+                if(typeof data.text !== 'string'){
+                    throw new Error('error message')
+                }
+            })
             this.data = data;
             this.render = function() {
                 for (var i=0; i<data.length; i++) {
-                    var html = `<div>${data[i].text}</div>`;
+                    var html = datas.map(({text}) => `\n${text}`).join('')
                     document.querySelector('#todo-list').innerHTML += html;
                 };   
             }
