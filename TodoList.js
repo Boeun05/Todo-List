@@ -27,8 +27,8 @@ export default function TodoList($target, initalState) {
     const htmlString =
       this.state.length > 0
         ? `<ul>${this.state
-            .map(({ text, isCompleted }) =>
-              isCompleted ? `<li><s>${text}</s></li>` : `<li>${text}</li>`
+            .map(({ text, isCompleted }, index) =>
+              isCompleted ? `<li id='${index}'\><s>${text}</s></li><button id='${index}'>DELETE</button>` : `<li id='${index}'>${text}</li><button id='${index}'>DELETE</button>`
             )
             .join('')}</ul>`
         : ''
@@ -42,4 +42,19 @@ export default function TodoList($target, initalState) {
   }
   this.validation(this.state)
   this.render()
+
+  this.addEvent = () => {
+    this.$target.addEventListener("click", (event)=>{
+        const eTarget = event.target;
+
+        if (eTarget.tagName === "LI" || eTarget.tagName === "S"){
+            this.state[eTarget.id].isCompleted = !this.state[eTarget.id].isCompleted
+        } else if (eTarget.tagName === "BUTTON"){
+          this.state.splice(eTarget.id, 1)
+        }
+
+        this.render();
+    })
+  }
+  this.addEvent()
 }
