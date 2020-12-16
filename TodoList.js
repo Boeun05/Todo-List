@@ -30,7 +30,8 @@ export default function TodoList({$app, initialState, changeState}) {
             .map(({ text, isCompleted }, index) =>
               `<li id='${index}'>
                 ${isCompleted ? `<s id='${index}'>${text}</s>` : text}
-                </li><button id='${index}'>DELETE</button>`
+                <button><i id='${index}' class="fas fa-trash-alt"></i></button>
+                </li>`
             )
             .join('')}</ul>`
         : ''
@@ -52,7 +53,7 @@ export default function TodoList({$app, initialState, changeState}) {
        console.log(eTarget)
        if (eTarget.tagName === "LI" || eTarget.tagName === "S"){
           this.state[id].isCompleted = !this.state[id].isCompleted
-       } else if (eTarget.tagName === "BUTTON"){
+       } else if (eTarget.tagName === "I"){
           this.state.splice(id, 1)
        }
       changeState(this.state)
