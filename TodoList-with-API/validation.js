@@ -18,6 +18,6 @@ export const checkTarget = ($target) => {
   
 export const checkTypes = (state, checkCallback) => {
     if (!state.every(checkCallback)) {
-      throw new Error('state가 맞지 않습니다.')
+      throw new Error('state의 형식이 맞지 않습니다.')
     }
 }

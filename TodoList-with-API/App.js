@@ -1,49 +1,111 @@
 import TodoList from './TodoList.js'
 import TodoInput from './TodoInput.js'
 import TodoCount from './TodoCount.js'
-import {fetchData, addData, deleteData, toggleData} from './Api.js'
+import {fetchData, addData, deleteData, toggleData, userData} from './Api.js'
+import TodoUser from './Todousers.js'
+
+const USER_NAME = 'boeun'
 
 export default function App({$app}){
     this.$app = $app
     this.state = []
-    this.components = [
-      new TodoList({
+    this.user = []
+    this.currentUser = USER_NAME
+
+    this.init = async() => {
+      const userResponse = await this.getUser()
+      const todoResponse = await this.getTodo(this.currentUser)
+
+      if(!userResponse){
+        return
+      }
+
+      if(!todoResponse){
+        return
+      }
+
+      this.user = userResponse
+      this.state = todoResponse
+
+      this.todoList = new TodoList({
         $app, 
         initialState: this.state,
-        deleteTodo:  async(id) => {
-          await deleteData(id)
-          this.initTodo()
-        },
-        toggleTodo: async(id) => {
-          await toggleData(id)
-          this.initTodo()
-        }
-      }),
-      new TodoInput({
+        deleteTodo: this.deleteTodo,
+        toggleTodo: this.toggleTodo
+      })
+
+      this.todoInput = new TodoInput({
         $app,
-        addTodo: async (text) => {
-          await addData(text)
-          this.initTodo()
-        }
-      }),
-      new TodoCount({
+        addTodo: this.addTodo
+      })
+
+      this.todoCount = new TodoCount({
         $app,
         initialState: this.state
       })
-    ]  
-    
-    this.initTodo = async () => {
-        const nextState = await fetchData()
-        this.setState(nextState)
-        console.log(nextState)
-    }
-    
-    this.setState = (nextState) => {
-      this.state = nextState
-      this.components.forEach(
-        (component) => component.setState && component.setState(this.state)
-      )
+
+      this.todoUser= new TodoUser({
+        user:this.user
+      })
+
+      this.setState(this.state)
     }
 
-    this.initTodo()
+
+    this.getUser = async () => {
+      try{
+        const nextUser = await userData()
+        return nextUser
+      } catch(error){
+        console.log(error.message)
+      }
+    }
+    
+    this.getTodo = async () => {
+      try{
+        const nextState = await fetchData(USER_NAME)
+        return nextState
+      } catch(error){
+        console.log(error.message)
+      }
+    }
+
+    this.addTodo = async (text) => {
+      try{
+        await addData(USER_NAME, text)
+        this.setState()
+      } catch(error){
+        console.log(error.message)
+      }
+    }
+
+    this.deleteTodo = async(id) => {
+      try{
+        await deleteData(USER_NAME, id)
+        this.setState()
+      } catch(error){
+        console.log(error.message)
+      }
+    } 
+
+    this.toggleTodo = async(id) => {
+      try{
+        await toggleData(USER_NAME,id)
+        this.setState()
+      } catch(error){
+        console.log(error.message)
+      }
+    }
+
+    this.setState = async () => {
+      this.state = await this.getTodo(this.currentUser)
+      this.todoList.setState(this.state)
+      this.todoCount.setState(this.state)
+    }
+    
+    
+    this.init()
+
+  
 }
+

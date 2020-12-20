@@ -1,4 +1,4 @@
-export default function TodoCount({$app, initialState}){
+export default function TodoCount({initialState}){
     const $target = document.querySelector('#todo-count')
     this.$target = $target
     this.state = initialState

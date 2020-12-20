@@ -1,5 +1,18 @@
-export const addData = async(todoText) => {
-    const response = await fetch('https://todo-api.roto.codes/bom', {
+const END_POINT = 'https://todo-api.roto.codes'
+
+export const fetchData = async (userName) => { 
+    const response = await fetch(`${END_POINT}/${userName}`)
+
+    if(!response.ok){
+        throw new Error('api를 가져오는데 문제가 발생하였습니다.')
+    }
+
+    return await response.json()
+}
+
+
+export const addData = async(userName, todoText) => {
+    const response = await fetch(`${END_POINT}/${userName}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -8,26 +21,41 @@ export const addData = async(todoText) => {
             content: todoText
         })
     })
-}
 
-export const deleteData = async(dataId) => {
-    const response = await fetch(`https://todo-api.roto.codes/bom/${dataId}`, {
-        method: 'DELETE'
-    })
-}
-
-export const toggleData = async(dataId) => {
-    const response = await fetch(`https://todo-api.roto.codes/bom/${dataId}/toggle`,{
-        method: 'PUT'
-    })
-}
-
-export const fetchData = async () => {
-    try {        
-        const response = await fetch('https://todo-api.roto.codes/bom')
-        return await response.json()
-    } catch (error) {
-        console.log(error)
+    if(!response.ok){
+        throw new Error('add api를 가져오는데 문제가 발생하였습니다.')
     }
 }
 
+
+export const deleteData = async(userName, dataId) => {
+    const response = await fetch(`${END_POINT}/${userName}/${dataId}`, {
+        method: 'DELETE'
+    })
+
+    if(!response.ok){
+        throw new Error('delete api를 가져오는데 문제가 발생하였습니다.')
+    }
+}
+
+
+export const toggleData = async(userName, dataId) => {
+    const response = await fetch(`${END_POINT}/${userName}/${dataId}/toggle`,{
+        method: 'PUT'
+    })
+
+    if(!response.ok){
+        throw new Error('toggle api를 가져오는데 문제가 발생하였습니다.')
+    }
+}
+
+
+export const userData = async () => {
+    const response = await fetch(`${END_POINT}/users`)
+
+    if(!response.ok){
+        throw new Error('users api를 가져오는데 문제가 발생하였습니다.')
+    }
+
+    return await response.json()
+}

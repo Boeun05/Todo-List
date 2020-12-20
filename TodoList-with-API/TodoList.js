@@ -2,7 +2,7 @@ import {
   useNewKeyword,
   useArrayState,
   checkTarget,
-  checkTypes,
+  checkTypes
 } from './validation.js'
 
 export default function TodoList({$app, initialState, deleteTodo, toggleTodo}) {
@@ -46,23 +46,20 @@ export default function TodoList({$app, initialState, deleteTodo, toggleTodo}) {
   }
 
   
- this.clickEvent = () => {
-   this.$target.addEventListener("click", (e)=>{
-       const eTarget = e.target;
-       const idx = eTarget.id
-       if (eTarget.tagName === "LI" || eTarget.tagName === "S"){
-         toggleTodo(this.state[idx]._id)
-       } else if (eTarget.tagName === "I"){
-          //누른 버튼의 id
-         //this.state에 api에 있는 데이터가 들어있어요
-         //this.state[idx] => 삭제하려는 데이터의 인덱스
-        deleteTodo(this.state[idx]._id)
-       } 
-   })
- }
- 
- this.clickEvent()
- this.validation(this.state)
+  this.clickEvent = () => {
+    this.$target.addEventListener("click", (e)=>{
+        const eTarget = e.target;
+        const idx = eTarget.id
+        if (eTarget.tagName === "LI" || eTarget.tagName === "S"){
+          toggleTodo(this.state[idx]._id)
+        } else if (eTarget.tagName === "I"){
+          deleteTodo(this.state[idx]._id)
+        } 
+    })
+  }
+  
+  this.clickEvent()
+  this.validation(this.state)
   this.render()
 
 }
