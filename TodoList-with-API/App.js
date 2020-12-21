@@ -3,6 +3,7 @@ import TodoInput from './TodoInput.js'
 import TodoCount from './TodoCount.js'
 import {fetchData, addData, deleteData, toggleData, userData} from './Api.js'
 import TodoUser from './Todousers.js'
+import SetUser from './SetUser.js'
 
 const USER_NAME = 'boeun'
 
@@ -46,6 +47,10 @@ export default function App({$app}){
 
       this.todoUser= new TodoUser({
         user:this.user
+      })
+
+      this.setUser = new SetUser({
+        currentUser: this.currentUser
       })
 
       this.setState(this.state)
@@ -101,6 +106,7 @@ export default function App({$app}){
       this.state = await this.getTodo(this.currentUser)
       this.todoList.setState(this.state)
       this.todoCount.setState(this.state)
+      this.setUser.setState(this.currentUser)
     }
     
     

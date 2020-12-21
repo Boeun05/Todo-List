@@ -1,17 +1,15 @@
 const ENTER_KEY = 13
 
 export default function TodoUser({user}){
-    const $target = document.querySelector('#todo-users')
+    const $target = document.querySelector('.user-list')
 
     this.$target = $target
     this.user = user
     
 
     this.render = () => {
-        const htmlString = 
-            `<ul>
-                ${this.user.map((userName) => `<li>${userName}</li>`).join('')}
-            </ul>`
+        const htmlString = `${this.user.map((userName) => `<li>${userName}</li>`).join('')}`
+            
         this.$target.innerHTML = htmlString
     }
     
