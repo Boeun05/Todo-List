@@ -1,23 +1,15 @@
-import {
-    useNewKeyword,
-    useArrayState,
-    checkTarget,
-    checkTypes
-} from './validation.js'
+const ENTER_KEY = 13;
 
-const ENTER_KEY = 13
+export default function TodoInput({ addTodo }) {
+  const $input = document.querySelector("#todo-input");
 
-export default function TodoInput({addTodo}){
-    const $input = document.querySelector('#todo-input')
+  this.$input = $input;
+  this.addTodo = addTodo;
 
-    this.$input = $input
-    this.addTodo = addTodo
-
-    
-    $input.addEventListener('keypress', (e) => {
-        if(e.keyCode === ENTER_KEY && $input.value.length > 0){
-                this.addTodo($input.value)
-                this.$input.value = ''
-        }
-    })
+  $input.addEventListener("keypress", (e) => {
+    if (e.keyCode === ENTER_KEY && $input.value.length > 0) {
+      this.addTodo($input.value);
+      this.$input.value = "";
+    }
+  });
 }

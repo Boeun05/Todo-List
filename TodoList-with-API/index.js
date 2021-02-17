@@ -1,6 +1,5 @@
-import App from './App.js'
-import TodoList from './TodoList.js'
+import App from "./App.js";
 
-const $app = document.querySelector('#app')
+const $app = document.querySelector("#app");
 
-new App({$app})
+new App({ $app });
