@@ -16,7 +16,7 @@
 - 새로운 todolist를 입력하고 input의 value를 비워주어 별도의 조작 없이 연속으로 추가할 수 있게 처리
 - length와 filter로 총 개수/ 완료 개수 카운트 하기 
 
-#### alidation(공통)
+#### Validation(공통)
 - new 키워드를 통해 함수의 인스턴스를 만들고 올바른 파라메터가 넘어오지 않을 경우 throw error 처리
   - data가 array형태로 넘어왔는지 여부 
   - new 키워드로 함수를 불러왔는지
