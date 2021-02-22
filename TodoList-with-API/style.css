@@ -4,6 +4,7 @@
   --mg-10: 10px;
   --mg-20: 20px;
   --pd-5: 5px;
+  --color-green: #52ab77;
 }
 * {
   margin: 0;
@@ -75,7 +76,7 @@ button {
 }
 
 #todo-count {
-  color: #52ab77;
+  color: var(--color-green);
   font-size: 18px;
   margin-top: var(--mg-10);
 }

@@ -55,9 +55,6 @@ export default function App({ $app }) {
     });
 
     this.setState(this.state);
-    console.log(this.state);
-    console.log(this.currentUser);
-    console.log(todoResponse);
   };
 
   this.getUser = async () => {
