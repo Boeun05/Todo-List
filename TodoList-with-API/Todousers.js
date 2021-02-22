@@ -1,9 +1,8 @@
-export default function TodoUser({ user }) {
+export default function TodoUsers({ user, changeUser }) {
   const $target = document.querySelector(".user-list");
 
   this.$target = $target;
   this.user = user;
-
 
   this.render = () => {
     const htmlString = `${this.user
@@ -17,7 +16,15 @@ export default function TodoUser({ user }) {
     this.user = nextUser;
     this.render();
   };
-  
 
+  this.clickEvent = () => {
+    this.$target.addEventListener("click", (e) => {
+      const eTarget = e.target;
+      const clickedUser = eTarget.textContent;
+      changeUser(clickedUser);
+    });
+  };
+
+  this.clickEvent();
   this.render();
 }

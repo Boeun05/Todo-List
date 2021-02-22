@@ -2,7 +2,7 @@ import TodoList from "./TodoList.js";
 import TodoInput from "./TodoInput.js";
 import TodoCount from "./TodoCount.js";
 import { fetchData, addData, deleteData, toggleData, userData } from "./Api.js";
-import TodoUser from "./TodoUsers.js";
+import TodoUsers from "./TodoUsers.js";
 import SetUser from "./SetUser.js";
 
 const USER_NAME = "boeun";
@@ -45,8 +45,9 @@ export default function App({ $app }) {
       initialState: this.state,
     });
 
-    this.todoUser = new TodoUser({
+    this.todoUsers = new TodoUsers({
       user: this.user,
+      changeUser: this.changeUser,
     });
 
     this.setUser = new SetUser({
@@ -54,6 +55,9 @@ export default function App({ $app }) {
     });
 
     this.setState(this.state);
+    console.log(this.state);
+    console.log(this.currentUser);
+    console.log(todoResponse);
   };
 
   this.getUser = async () => {
@@ -67,7 +71,7 @@ export default function App({ $app }) {
 
   this.getTodo = async () => {
     try {
-      const nextState = await fetchData(USER_NAME);
+      const nextState = await fetchData(this.currentUser);
       return nextState;
     } catch (error) {
       console.log(error.message);
@@ -76,7 +80,7 @@ export default function App({ $app }) {
 
   this.addTodo = async (text) => {
     try {
-      await addData(USER_NAME, text);
+      await addData(this.currentUser, text);
       this.setState();
     } catch (error) {
       console.log(error.message);
@@ -85,7 +89,7 @@ export default function App({ $app }) {
 
   this.deleteTodo = async (id) => {
     try {
-      await deleteData(USER_NAME, id);
+      await deleteData(this.currentUser, id);
       this.setState();
     } catch (error) {
       console.log(error.message);
@@ -94,11 +98,16 @@ export default function App({ $app }) {
 
   this.toggleTodo = async (id) => {
     try {
-      await toggleData(USER_NAME, id);
+      await toggleData(this.currentUser, id);
       this.setState();
     } catch (error) {
       console.log(error.message);
     }
+  };
+
+  this.changeUser = async (clickedUser) => {
+    this.currentUser = clickedUser;
+    this.init();
   };
 
   this.setState = async () => {
@@ -106,6 +115,7 @@ export default function App({ $app }) {
     this.todoList.setState(this.state);
     this.todoCount.setState(this.state);
     this.setUser.setState(this.currentUser);
+    this.todoUsers.setState(this.user);
   };
 
   this.init();
