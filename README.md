@@ -25,7 +25,6 @@
 #### API
 - API Url에서 USER_NAME에 해당하는 할 일 리스트 불러오기
 - API 이용하는 모든 userlist를 불러오고 유저 클릭 시 해당 유저의 할 일 리스트 보여주기
-- API가 딜레이가 있을 경우의 인터랙션 처리
 - POST method로 할 일 추가하기
 - 데이터를 fetch할 때 !response.ok일 경우 throw error 처리
 - async/ await로 비동기 처리
