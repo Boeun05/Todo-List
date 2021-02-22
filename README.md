@@ -5,9 +5,9 @@
 [프로그래머스](https://programmers.co.kr/)에서 진행한 프론트엔드 개발 온라인 스터디를 통해 구현한 바닐라 자바스크립트 Todo-list입니다. <br/>Api를 이용한 TodoList와 Local Storage에 저장하는 TodoList 두 가지를 구현했습니다.
 
 ## Preview
-
-  <img width="800" alt="7" src="https://user-images.githubusercontent.com/71836751/108251703-191afa00-719b-11eb-9376-ebe934e3df6a.gif">
-
+<p align="center">
+  <img alt="7" src="https://user-images.githubusercontent.com/71836751/108772588-8b774a00-75a0-11eb-9c39-45ab51651495.gif">
+</p>
 
 ## Features
 
