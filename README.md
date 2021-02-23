@@ -17,10 +17,10 @@
 - length와 filter로 총 개수/ 완료 개수 카운트 하기 
 
 #### Validation(공통)
-- new 키워드를 통해 함수의 인스턴스를 만들고 올바른 파라메터가 넘어오지 않을 경우 throw error 처리
-  - data가 array형태로 넘어왔는지 여부 
-  - new 키워드로 함수를 불러왔는지
-  - 데이터의 형태가 올바른지(typeof content === 'string' && typeof isCompleted === 'boolean')
+ - new 키워드를 통해 함수의 인스턴스를 만들고 올바른 파라메터가 넘어오지 않을 경우 throw error 처리
+ - data가 array형태로 넘어왔는지 여부 
+ - new 키워드로 함수를 불러왔는지
+ - 데이터의 형태가 올바른지(typeof content === 'string' && typeof isCompleted === 'boolean')
   
 #### API
 - API Url에서 USER_NAME에 해당하는 할 일 리스트 불러오기
