@@ -1,9 +1,17 @@
 import TodoList from "./TodoList.js";
 import TodoInput from "./TodoInput.js";
 import TodoCount from "./TodoCount.js";
-import { fetchData, addData, deleteData, toggleData, userData } from "./Api.js";
+import {
+  fetchData,
+  addData,
+  deleteData,
+  toggleData,
+  userData,
+  deleteEveryData,
+} from "./Api.js";
 import TodoUsers from "./TodoUsers.js";
 import SetUser from "./SetUser.js";
+import DeleteAll from "./DeleteAll.js";
 
 const USER_NAME = "boeun";
 
@@ -14,19 +22,16 @@ export default function App({ $app }) {
   this.currentUser = USER_NAME;
 
   this.init = async () => {
-    const userResponse = await this.getUser();
-    const todoResponse = await this.getTodo(this.currentUser);
+    this.user = await this.getUser();
+    this.state = await this.getTodo(this.currentUser);
 
-    if (!userResponse) {
+    if (!this.user) {
       return;
     }
 
-    if (!todoResponse) {
+    if (!this.state) {
       return;
     }
-
-    this.user = userResponse;
-    this.state = todoResponse;
 
     this.todoList = new TodoList({
       $app,
@@ -50,6 +55,10 @@ export default function App({ $app }) {
       changeUser: this.changeUser,
     });
 
+    this.deleteAll = new DeleteAll({
+      $app: this.$app,
+      deleteAll: this.deleteAllTodos,
+    });
     this.setUser = new SetUser({
       currentUser: this.currentUser,
     });
@@ -69,6 +78,7 @@ export default function App({ $app }) {
   this.getTodo = async () => {
     try {
       const nextState = await fetchData(this.currentUser);
+      console.log(nextState);
       return nextState;
     } catch (error) {
       console.log(error.message);
@@ -102,9 +112,18 @@ export default function App({ $app }) {
     }
   };
 
+  this.deleteAllTodos = async () => {
+    try {
+      await deleteEveryData(this.currentUser);
+      this.setState();
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   this.changeUser = async (clickedUser) => {
     this.currentUser = clickedUser;
-    this.init();
+    this.setState();
   };
 
   this.setState = async () => {

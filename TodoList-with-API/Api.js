@@ -1,5 +1,5 @@
 const END_POINT = "https://todo-api.roto.codes";
-
+const DELAY_TIME = 2000;
 export const fetchData = async (userName) => {
   const response = await fetch(`${END_POINT}/${userName}`);
 
@@ -33,6 +33,16 @@ export const deleteData = async (userName, dataId) => {
 
   if (!response.ok) {
     throw new Error("delete api를 가져오는데 문제가 발생하였습니다.");
+  }
+};
+
+export const deleteEveryData = async (userName) => {
+  const response = await fetch(`${END_POINT}/${userName}/all`, {
+    method: "DELETE",
+  });
+
+  if (!response.ok) {
+    throw new Error("전체 데이터를 삭제하는데 문제가 발생하였습니다.");
   }
 };
 

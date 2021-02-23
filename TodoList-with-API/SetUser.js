@@ -9,7 +9,7 @@ export default function SetUser({ currentUser }) {
   };
 
   this.setState = (nextUser) => {
-    this.currentUser = nextUser;
+    currentUser = nextUser;
     this.render();
   };
 
