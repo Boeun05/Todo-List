@@ -5,6 +5,7 @@
   --mg-20: 20px;
   --pd-5: 5px;
   --color-green: #52ab77;
+  --color-red: #e96d77;
 }
 * {
   margin: 0;
@@ -15,7 +16,7 @@
 body {
   font-family: "Noto Sans KR", sans-serif;
   color: #333;
-  background: #f3f3f3;
+  background: #f1f1f1;
 }
 
 ul,
@@ -72,13 +73,18 @@ button {
   border: none;
   outline: none;
   font-size: 25px;
-  color: #e96d77;
+  color: var(--color-red);
+  height: 100%;
 }
 
 #todo-count {
   color: var(--color-green);
-  font-size: 18px;
   margin-top: var(--mg-10);
+}
+
+.count-result {
+  padding: 10px;
+  font-size: 23px;
 }
 
 #todo-users {
@@ -91,6 +97,14 @@ button {
   padding: 30px 50px;
 }
 
+#todo-users::-webkit-scrollbar {
+  width: 10px;
+}
+
+#todo-users::-webkit-scrollbar-thumb {
+  background: #b6b6b6;
+}
+
 #todo-users h2 {
   margin-bottom: var(--mg-10);
 }
@@ -98,4 +112,14 @@ button {
 #todo-users li {
   cursor: pointer;
   padding: var(--pd-5);
+}
+
+.delete-all {
+  cursor: pointer;
+  font-size: 20px;
+  /* font-weight: bold; */
+}
+
+.delete-all:hover {
+  transform: scale(1.1);
 }

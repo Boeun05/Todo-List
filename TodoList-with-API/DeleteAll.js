@@ -3,7 +3,7 @@ export default function DeleteAll({ $app, deleteAll }) {
   this.$target = $target;
   this.$app = $app;
   $app.appendChild($target);
-  $target.textContent = "delete all";
+  $target.textContent = "Delete all";
   $target.className = "delete-all";
 
   this.render = () => {
