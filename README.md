@@ -6,7 +6,7 @@
 
 ## Preview
 <p align="center">
-  <img alt="7" src="https://user-images.githubusercontent.com/71836751/108772588-8b774a00-75a0-11eb-9c39-45ab51651495.gif">
+  <img alt="7" src="https://user-images.githubusercontent.com/71836751/108887461-a05de700-764d-11eb-9dea-3e59e2809f9a.gif">
 </p>
 
 ## Features
@@ -29,6 +29,7 @@
 - 데이터를 fetch할 때 !response.ok일 경우 throw error 처리
 - async/ await로 비동기 처리
 - PUT method로 할 일 완료 여부 처리
+- 모든 할 일 리스트 삭제하기
 
 
 #### LocalStorage
