@@ -117,7 +117,7 @@ button {
 .delete-all {
   cursor: pointer;
   font-size: 20px;
-  /* font-weight: bold; */
+  padding: 10px;
 }
 
 .delete-all:hover {
