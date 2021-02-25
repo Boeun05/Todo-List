@@ -2,7 +2,7 @@ const END_POINT = "https://todo-api.roto.codes";
 const DELAY_TIME = 2000;
 
 export const fetchData = async (userName) => {
-  const response = await fetch(`${END_POINT}/${userName}?delay=${DELAY_TIME}`);
+  const response = await fetch(`${END_POINT}/${userName}`);
 
   if (!response.ok) {
     throw new Error("api를 가져오는데 문제가 발생하였습니다.");
