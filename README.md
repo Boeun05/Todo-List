@@ -9,6 +9,11 @@
   <img alt="7" src="https://user-images.githubusercontent.com/71836751/108887461-a05de700-764d-11eb-9dea-3e59e2809f9a.gif">
 </p>
 
+### ✔추가 - API 딜레이 시 인터랙션 처리(21.02.26)
+<p align="center">
+  <img alt="7" src="https://user-images.githubusercontent.com/71836751/109174937-a62c0780-77c8-11eb-87e2-6e5302d6e311.gif">
+</p>
+
 ## Features
 
 #### 할 일 리스트(공통)
