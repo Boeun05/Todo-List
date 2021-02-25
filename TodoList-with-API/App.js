@@ -12,6 +12,7 @@ import {
 import TodoUsers from "./TodoUsers.js";
 import SetUser from "./SetUser.js";
 import DeleteAll from "./DeleteAll.js";
+import Loading from "./Loading.js";
 
 const USER_NAME = "boeun";
 
@@ -24,6 +25,7 @@ export default function App({ $app }) {
 
   this.init = async () => {
     this.user = await this.getUser(this.currentUser);
+    this.loading = new Loading({ isLoading: this.isLoading });
     this.state = await this.getTodo(this.currentUser);
 
     if (!this.user) {
@@ -38,16 +40,13 @@ export default function App({ $app }) {
       initialState: this.state,
       deleteTodo: this.deleteTodo,
       toggleTodo: this.toggleTodo,
-      isLoading: this.isLoading,
     });
 
     this.todoInput = new TodoInput({
-      $app,
       addTodo: this.addTodo,
     });
 
     this.todoCount = new TodoCount({
-      $app,
       initialState: this.state,
     });
 
@@ -60,11 +59,10 @@ export default function App({ $app }) {
       $app: this.$app,
       deleteAll: this.deleteAllTodos,
     });
+
     this.setUser = new SetUser({
       currentUser: this.currentUser,
     });
-
-    // this.setState(this.state);
   };
 
   this.getUser = async () => {
@@ -77,9 +75,12 @@ export default function App({ $app }) {
   };
 
   this.getTodo = async () => {
-    // this.isLoading = true;
     try {
+      this.isLoading = true;
+      this.loading.setState(this.isLoading);
       const nextState = await fetchData(this.currentUser);
+      this.isLoading = false;
+      this.loading.setState(this.isLoading);
       return nextState;
     } catch (error) {
       console.log(error.message);
@@ -124,6 +125,7 @@ export default function App({ $app }) {
 
   this.changeUser = async (clickedUser) => {
     this.currentUser = clickedUser;
+    this.setUser.setState(this.currentUser);
     this.setState();
   };
 
@@ -132,8 +134,6 @@ export default function App({ $app }) {
     this.state = await this.getTodo(this.currentUser);
     this.todoList.setState(this.state);
     this.todoCount.setState(this.state);
-    this.setUser.setState(this.currentUser);
-    this.todoUsers.setState(this.user);
   };
 
   this.init();
