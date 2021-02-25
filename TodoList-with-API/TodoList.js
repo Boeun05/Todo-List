@@ -30,7 +30,7 @@ export default function TodoList({ initialState, deleteTodo, toggleTodo }) {
               ({ content, isCompleted }, index) =>
                 `<li id='${index}'>
                 ${isCompleted ? `<s id='${index}'>${content}</s>` : content}
-                <button><i id='${index}' class="fas fa-trash-alt"></i></button>
+                <button class="delete"><i id='${index}' class="fas fa-trash-alt"></i></button>
                 </li>`
             )
             .join("")}</ul>`
