@@ -9,16 +9,16 @@ export default function TodoUsers({ user, changeUser }) {
       .map((userName) => `<li>${userName}</li>`)
       .join("")}`;
 
-    this.$target.innerHTML = htmlString;
+    $target.innerHTML = htmlString;
   };
 
   this.setState = (nextUser) => {
-    this.user = nextUser;
+    user = nextUser;
     this.render();
   };
 
   this.clickEvent = () => {
-    this.$target.addEventListener("click", (e) => {
+    $target.addEventListener("click", (e) => {
       const eTarget = e.target;
       const clickedUser = eTarget.textContent;
       changeUser(clickedUser);

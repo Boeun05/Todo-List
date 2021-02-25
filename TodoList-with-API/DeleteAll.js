@@ -7,7 +7,7 @@ export default function DeleteAll({ $app, deleteAll }) {
   $target.className = "delete-all";
 
   this.render = () => {
-    this.$target.addEventListener("click", () => {
+    $target.addEventListener("click", () => {
       deleteAll();
     });
   };

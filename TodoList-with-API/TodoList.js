@@ -13,7 +13,7 @@ export default function TodoList({ initialState, deleteTodo, toggleTodo }) {
   this.validation = (state) => {
     useNewKeyword(this);
     useArrayState(state);
-    checkTarget(this.$target);
+    checkTarget($target);
     checkTypes(
       state,
       ({ content, isCompleted }) =>
@@ -35,7 +35,7 @@ export default function TodoList({ initialState, deleteTodo, toggleTodo }) {
             )
             .join("")}</ul>`
         : "";
-    this.$target.innerHTML = htmlString;
+    $target.innerHTML = htmlString;
   };
 
   this.setState = (nextState) => {
@@ -45,7 +45,7 @@ export default function TodoList({ initialState, deleteTodo, toggleTodo }) {
   };
 
   this.clickEvent = () => {
-    this.$target.addEventListener("click", (e) => {
+    $target.addEventListener("click", (e) => {
       const eTarget = e.target;
       const idx = eTarget.id;
       if (eTarget.tagName === "LI" || eTarget.tagName === "S") {
