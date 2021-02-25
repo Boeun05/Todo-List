@@ -20,9 +20,10 @@ export default function App({ $app }) {
   this.state = [];
   this.user = [];
   this.currentUser = USER_NAME;
+  this.isLoading = false;
 
   this.init = async () => {
-    this.user = await this.getUser();
+    this.user = await this.getUser(this.currentUser);
     this.state = await this.getTodo(this.currentUser);
 
     if (!this.user) {
@@ -34,10 +35,10 @@ export default function App({ $app }) {
     }
 
     this.todoList = new TodoList({
-      $app,
       initialState: this.state,
       deleteTodo: this.deleteTodo,
       toggleTodo: this.toggleTodo,
+      isLoading: this.isLoading,
     });
 
     this.todoInput = new TodoInput({
@@ -63,7 +64,7 @@ export default function App({ $app }) {
       currentUser: this.currentUser,
     });
 
-    this.setState(this.state);
+    // this.setState(this.state);
   };
 
   this.getUser = async () => {
@@ -76,9 +77,9 @@ export default function App({ $app }) {
   };
 
   this.getTodo = async () => {
+    // this.isLoading = true;
     try {
       const nextState = await fetchData(this.currentUser);
-      console.log(nextState);
       return nextState;
     } catch (error) {
       console.log(error.message);
@@ -127,6 +128,7 @@ export default function App({ $app }) {
   };
 
   this.setState = async () => {
+    this.user = await this.getUser();
     this.state = await this.getTodo(this.currentUser);
     this.todoList.setState(this.state);
     this.todoCount.setState(this.state);
