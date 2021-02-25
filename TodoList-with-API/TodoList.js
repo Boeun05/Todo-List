@@ -7,7 +7,7 @@ import {
 
 export default function TodoList({ initialState, deleteTodo, toggleTodo }) {
   this.state = initialState;
-  const $target = document.querySelector(".TodoList");
+  const $target = document.querySelector(".todo-list");
   this.$target = $target;
 
   this.validation = (state) => {
@@ -22,6 +22,7 @@ export default function TodoList({ initialState, deleteTodo, toggleTodo }) {
   };
 
   this.render = () => {
+    console.log("rendered");
     const htmlString =
       this.state.length > 0
         ? `<ul>${this.state

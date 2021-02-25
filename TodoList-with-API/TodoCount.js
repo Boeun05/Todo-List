@@ -1,5 +1,5 @@
 export default function TodoCount({ initialState }) {
-  const $target = document.querySelector("#todo-count");
+  const $target = document.querySelector(".todo-count");
   this.$target = $target;
   this.state = initialState;
 
@@ -10,7 +10,7 @@ export default function TodoCount({ initialState }) {
 
   this.render = () => {
     const { totalCount, completedCount } = this.getCount();
-    this.$target.innerHTML = `<span class="count-result" title="총 todo list 수"><i class="fas fa-list-alt"></i> : ${totalCount} </span><span class="count-result" title="완료된 todo list 수"><i class="fas fa-check-circle"></i> : ${completedCount}</span>`;
+    $target.innerHTML = `<span class="count-result" title="총 todo list 수"><i class="fas fa-list-alt"></i> : ${totalCount} </span><span class="count-result" title="완료된 todo list 수"><i class="fas fa-check-circle"></i> : ${completedCount}</span>`;
   };
 
   this.setState = (nextState) => {
